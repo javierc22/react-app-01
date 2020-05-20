@@ -3,13 +3,16 @@ import React, { Fragment, useState } from 'react';
 const Formulario = () => {
 
   // Crear State de Citas
-  const[cita, actualizarCita] = useState({
+  const [cita, actualizarCita] = useState({
     mascota: '',
     propietario: '',
     fecha: '',
     hora: '',
     sintomas: ''
-  })
+  });
+
+  // State para manejar errores
+  const [error, actualizarError] = useState(false);
 
   // Función que se ejecuta cada vez que el usuario escribe en un input
   const actualizarState = e => {
@@ -26,10 +29,12 @@ const Formulario = () => {
 
   // Cuando el usuario envía el formulario (presiona Agregar Cita)
   const submitCita = e => {
-    e.preventDefault();
-    console.log("Enviando formulario...")
+    e.preventDefault(); 
     // Validar
-
+    if (mascota.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '') {
+      actualizarError(true);
+      return;
+    }
     // Asignar un ID
 
     // Crear la cita
@@ -40,7 +45,7 @@ const Formulario = () => {
   return (
     <Fragment>
       <h2>Crear Cita</h2>
-
+      { error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null }
       <form onSubmit={submitCita} >
         <label>Nombre Mascota</label>
         <input
