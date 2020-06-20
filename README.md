@@ -1,6 +1,6 @@
 # App 01: Administrador de pacientes
 
-<img src="./img-app.jpg" height="400">
+<img src="./img-app.jpg" height="500">
 
 ## Available Scripts
 
